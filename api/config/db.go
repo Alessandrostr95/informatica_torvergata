@@ -2,6 +2,7 @@ package config
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -10,13 +11,19 @@ var db_triennale *sql.DB
 var db_magistrale *sql.DB
 
 func Connect() {
-	d1, err := sql.Open("mysql", "informatica:mu99Db6JWwWXAeLK@tcp(localhost:3306)/informatica_triennale?charset=utf8&parseTime=True&loc=Local")
+	conf := GetConfig()
+
+	uri := fmt.Sprintf("%s:%s@tcp(%s:%d)/informatica_%s?charset=utf8&parseTime=True&loc=Local", conf.User, conf.Password, conf.Host, conf.Port, "triennale")
+
+	d1, err := sql.Open("mysql", uri)
 	if err != nil {
 		panic(err)
 	}
 	db_triennale = d1
 
-	d2, err := sql.Open("mysql", "informatica:mu99Db6JWwWXAeLK@tcp(localhost:3306)/informatica_magistrale?charset=utf8&parseTime=True&loc=Local")
+	uri = fmt.Sprintf("%s:%s@tcp(%s:%d)/informatica_%s?charset=utf8&parseTime=True&loc=Local", conf.User, conf.Password, conf.Host, conf.Port, "magistrale")
+
+	d2, err := sql.Open("mysql", uri)
 	if err != nil {
 		panic(err)
 	}
