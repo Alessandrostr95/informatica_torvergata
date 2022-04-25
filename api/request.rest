@@ -1,0 +1,12 @@
+GET http://localhost:8080/api/data/triennale/21-22/teacher
+
+###
+GET http://localhost:8080/api/data/triennale/21-22/class
+
+
+###
+# MAGISTRALE
+GET http://localhost:8080/api/data/magistrale/21-22/teacher
+
+###
+GET http://localhost:8080/api/data/magistrale/21-22/class
