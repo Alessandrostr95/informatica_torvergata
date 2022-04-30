@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 
 	"informatica.uniroma2.eu/api/routes"
 )
@@ -15,5 +16,11 @@ func main() {
 	routes.RegisterRoutes(r)
 	http.Handle("/", r)
 	fmt.Println("Server is running on port 8080")
-	log.Fatal(http.ListenAndServe(":8080", r))
+
+	handler := cors.New(
+		cors.Options{
+			AllowedOrigins: []string{"*"},
+		},
+	).Handler(r)
+	log.Fatal(http.ListenAndServe(":8080", handler))
 }
