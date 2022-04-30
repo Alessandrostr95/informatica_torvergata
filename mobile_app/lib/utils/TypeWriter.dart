@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-Widget typeWrite(String text) {
-  TextStyle textStyle = const TextStyle(
-    fontSize: 18,
+Widget typeWrite(String text, [double fontSize = 18]) {
+  TextStyle textStyle = TextStyle(
+    fontSize: fontSize,
     fontFamily: "monospace",
     color: Colors.black
   );
@@ -14,6 +14,7 @@ Widget typeWrite(String text) {
     child: DefaultTextStyle(
       style: textStyle,
       child: AnimatedTextKit(
+        totalRepeatCount: 1,
         repeatForever: false,
         onTap: () {},
         animatedTexts: [

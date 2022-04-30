@@ -16,9 +16,6 @@ class _CalendarTabState extends State<CalendarTab> {
   Widget build(BuildContext context) {
     return Consumer<CourseInfo>(
       builder: (context, info, child) {
-        final String cdl =
-            "CalendartabelleOrariio orari ${info.master ? 'Magistrale' : 'Triennale'}";
-
         return info.master
             ? const CalendarWidget(cdl: 'magistrale', years: 2)
             : const CalendarWidget(cdl: 'triennale', years: 3);

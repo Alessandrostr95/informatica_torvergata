@@ -5,7 +5,7 @@ import 'package:line_icons/line_icons.dart';
 
 import 'HomeTab.dart';
 import 'CalendarTab.dart';
-import 'ListTeacherTab.dart';
+import 'TeacherTab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

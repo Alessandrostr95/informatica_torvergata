@@ -24,7 +24,7 @@ class _CalendarWidgetState extends State<CalendarWidget>
 
     final CalendarBloc _bloc = CalendarBloc(CalendarApiClient(
         url:
-            "http://10.0.2.2:8080/api/data/${widget.cdl.toLowerCase()}/21-22/calendar/2"))
+            "http://192.168.1.15:8080/api/data/${widget.cdl.toLowerCase()}/21-22/calendar/2"))
       ..add(LoadCalendarEvent());
 
     return BlocProvider(
@@ -173,6 +173,7 @@ class _CalendarWidgetState extends State<CalendarWidget>
                   height: MediaQuery.of(context).size.height * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text('\u2022 Codice: ${item["code"]}'),
                       Text('\u2022 Inizio lezione: ${item["start_time"]}'),
