@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Calendar extends Equatable {
-  final Map<String, dynamic> data;
+  final List data;
 
   const Calendar({required this.data});
 

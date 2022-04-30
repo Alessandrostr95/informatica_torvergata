@@ -11,7 +11,7 @@ void main() {
   // );
   runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => CourseInfo()),
+        ChangeNotifierProvider(create: (context) => CourseInfo()),  
         // ChangeNotifierProvider(create: (context) => NewsNotifier())
       ],
       child: const InformaticaTorVergataApp())

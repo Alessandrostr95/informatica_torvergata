@@ -45,6 +45,8 @@ dependencies:
   http: ^0.13.4
   bloc: ^8.0.3
   flutter_bloc: ^8.0.1
+  time_planner: ^0.0.4
+  circular_reveal_animation: ^2.0.0
 
 dev_dependencies:
   flutter_test:
