@@ -118,5 +118,9 @@ func GetClassesByTeacherId(id int, year string, cdl string) ([]class, error) {
 		)
 		classes = append(classes, c)
 	}
+
+	if len(classes) == 0 {
+		return make([]class, 0), nil
+	}
 	return classes, nil
 }

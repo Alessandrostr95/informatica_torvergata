@@ -3,7 +3,7 @@ package models
 import "fmt"
 
 type Calendar struct {
-	CourseYear string `json:"coures_year"`
+	CourseYear int    `json:"coures_year"`
 	Name       string `json:"name"`
 	Code       string `json:"code"`
 	Year       string `json:"year"`
