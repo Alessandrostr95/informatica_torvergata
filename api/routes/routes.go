@@ -10,4 +10,5 @@ func RegisterRoutes(router *mux.Router) {
 	router.HandleFunc("/api/data/{cdl}/{year}/teacher", controllers.GetAllTeachers).Methods("GET")
 	router.HandleFunc("/api/data/{cdl}/{year}/class", controllers.GetAllClasses).Methods("GET")
 	router.HandleFunc("/api/data/{cdl}/{year}/calendar/{semester}", controllers.GetCalendarBySemester).Methods("GET")
+	router.HandleFunc("/api/data/news", controllers.GetNews).Methods("GET")
 }
