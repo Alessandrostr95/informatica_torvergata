@@ -8,7 +8,7 @@ type Class struct {
 	Code          string         `json:"code"`
 	Name          string         `json:"name"`
 	Sector        string         `json:"sector"`
-	CouresYear    int            `json:"coures_year"`
+	CourseYear    int            `json:"course_year"`
 	Year          string         `json:"year"`
 	Cfu           int            `json:"cfu"`
 	Teachers      []teacher      `json:"teachers"`
@@ -39,7 +39,7 @@ func GetClasses(year string, cdl string) ([]Class, error) {
 			&c.Code,
 			&c.Name,
 			&c.Sector,
-			&c.CouresYear,
+			&c.CourseYear,
 			&c.Year,
 			&c.Cfu,
 		)
