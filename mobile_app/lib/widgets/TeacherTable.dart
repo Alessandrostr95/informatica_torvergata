@@ -104,6 +104,7 @@ class _TeacherTableState extends State<TeacherTable>
     return DataTable2(
         dividerThickness: 2,
         showBottomBorder: true,
+        empty: const Icon(Icons.cancel, color: Colors.red),
         minWidth: 1000,
         headingTextStyle:
             const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),

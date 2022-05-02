@@ -18,6 +18,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         // throw Error();
         emit(NewsLoadedState(news: news));
       } catch (e) {
+        print(e.toString());
         emit(NewsErrorState(error: e.toString()));
       }
     });

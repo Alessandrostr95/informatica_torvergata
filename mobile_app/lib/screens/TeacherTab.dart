@@ -18,10 +18,9 @@ class _ListTeacherTabState extends State<ListTeacherTab> {
     return Scaffold(
         body: Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 28),
             child: Center(
               child: typeWrite("> Lista docenti ",
                   24), // non capisco perche' non fa il rebuild.

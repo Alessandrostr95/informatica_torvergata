@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'model.dart';
 import 'package:http/http.dart' as http;
 
@@ -6,9 +8,10 @@ class NewsApiClient {
   NewsApiClient({required this.url});
 
   Future<List<News>> fetch() async {
-    var news = <News>[];
+    var resp = await http.get(Uri.parse(url));
+    final _data = jsonDecode(utf8.decode(resp.bodyBytes));
     await Future.delayed(const Duration(seconds: 3));
-    news = News.examples;
+    final news = List<News>.generate(_data.length, (index) => News.fromJson(_data[index]));
     return news;
   }
 }

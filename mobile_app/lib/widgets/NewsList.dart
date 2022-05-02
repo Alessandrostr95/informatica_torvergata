@@ -11,7 +11,8 @@ class NewsList extends StatefulWidget {
   State<NewsList> createState() => _NewsListState();
 }
 
-class _NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin {
+class _NewsListState extends State<NewsList>
+    with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -20,7 +21,9 @@ class _NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin 
     super.build(context);
 
     return BlocProvider(
-      create: (context) => NewsBloc(NewsApiClient(url: "ciao"))..add(LoadNewsEvent()),
+      create: (context) =>
+          NewsBloc(NewsApiClient(url: "http://192.168.1.15:8080/api/data/news"))
+            ..add(LoadNewsEvent()),
       child: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
           if (state is NewsLoadingState) {
@@ -46,7 +49,8 @@ class _NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin 
                     ),
                   ),
                   IconButton(
-                      onPressed: () => BlocProvider.of<NewsBloc>(context).add(LoadNewsEvent()),
+                      onPressed: () => BlocProvider.of<NewsBloc>(context)
+                          .add(LoadNewsEvent()),
                       icon: const Icon(Icons.refresh, color: Colors.white70)),
                 ],
               ),

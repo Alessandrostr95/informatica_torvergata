@@ -8,13 +8,13 @@ class News extends Equatable {
   final String author;
   final DateTime date;
   final String content;
+  List links = [];
 
-  const News({
-    required this.title,
-    required this.author,
-    required this.date,
-    required this.content,
-  });
+  News(
+      {required this.title,
+      required this.author,
+      required this.date,
+      required this.content});
 
   static String loremIpsum =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi orci erat, feugiat at luctus pellentesque, euismod id erat. Duis ultricies, ex at auctor semper, est purus congue ipsum, ut bibendum augue quam nec neque. Nam in nulla consequat, interdum elit nec, vestibulum odio. Praesent euismod, orci ut pellentesque facilisis, est ligula ornare dolor, vel congue magna est eu orci.";
@@ -66,12 +66,14 @@ class News extends Equatable {
 
   News.fromJson(Map<String, dynamic> json)
       : title = json["title"],
-        author = json["author"],
-        date = json["date"],
-        content = json["content"];
+        author = json["author"]["name"],
+        date = DateTime.parse(json["publishedParsed"]),
+        content = json["description"],
+        links = json["enclosures"];
 
   static List<Card> newsWidgetFrom(List<News> news) {
-    final DateFormat df = DateFormat("dd/MM/yyyy HH:mm");
+    final DateFormat df = DateFormat("EEE, d/M/y HH:mm");
+    news.sort((a, b) => -a.date.compareTo(b.date));
     return news.map((e) {
       return Card(
         clipBehavior: Clip.antiAlias,
