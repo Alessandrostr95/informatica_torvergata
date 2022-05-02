@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
 
 import 'package:mobile_app/bloc/teacher/bloc.dart';
 import 'package:mobile_app/bloc/teacher/provider.dart';
@@ -37,15 +38,7 @@ class _TeacherTableState extends State<TeacherTable>
               color: Colors.green,
             ));
           } else if (state is TeacherLoadedState) {
-            return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: SingleChildScrollView(
-                child: SizedBox(
-                  width: 1200,
-                  child: _teacherTable(state.teachers)
-                )
-              ),
-            );
+            return _teacherTable(state.teachers);
           }
           return Center(
             child: Column(
@@ -70,22 +63,37 @@ class _TeacherTableState extends State<TeacherTable>
     );
   }
 
+  void _onLongPressed(String data) {
+    Clipboard.setData(ClipboardData(text: data));
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text("Copied!")));
+  }
+
   DataTable2 _teacherTable(List<Teacher> teachers) {
     final List<DataRow> rows = List<DataRow>.generate(teachers.length, (index) {
       final Teacher t = teachers[index];
       return DataRow(cells: [
-        DataCell(Text("${t.firstName} ${t.lastName}")),
-        DataCell(Text(t.qualification)),
-        DataCell(Text(t.office)),
+        DataCell(Text("${t.firstName} ${t.lastName}"),
+            onLongPress: () => _onLongPressed("${t.firstName} ${t.lastName}")),
+        DataCell(
+          Text(t.qualification),
+          onLongPress: () => _onLongPressed(t.qualification),
+        ),
+        DataCell(
+          Text(t.office),
+          onLongPress: () => _onLongPressed(t.office),
+        ),
         DataCell(Text(t.phone),
+            onLongPress: () => _onLongPressed(t.phone),
             onTap: t.phone != ""
                 ? () => launch(Uri(scheme: "tel", path: t.phone).toString())
                 : null),
         DataCell(Text(t.mail),
+            onLongPress: () => _onLongPressed(t.mail),
             onTap: t.mail != ""
                 ? () => launch(Uri(scheme: "mailto", path: t.mail).toString())
                 : null),
         DataCell(Text(t.website),
+            onLongPress: () => _onLongPressed(t.website),
             onTap: t.website != ""
                 ? () =>
                     launch(t.website, forceWebView: false, forceSafariVC: false)
@@ -95,7 +103,8 @@ class _TeacherTableState extends State<TeacherTable>
 
     return DataTable2(
         dividerThickness: 2,
-        minWidth: 100,
+        showBottomBorder: true,
+        minWidth: 1000,
         headingTextStyle:
             const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         headingRowColor: MaterialStateProperty.resolveWith<Color>(
