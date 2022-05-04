@@ -19,3 +19,7 @@ GET http://localhost:8080/api/data/magistrale/21-22/calendar/2
 
 ###
 GET http://localhost:8080/api/data/news
+
+
+###
+GET http://localhost:8080/api/data/images/AE.png
