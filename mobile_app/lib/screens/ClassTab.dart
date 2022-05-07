@@ -22,7 +22,7 @@ class _ClassTab extends State<ClassTab> {
           Padding(
             padding: const EdgeInsets.only(top: 28),
             child: Center(
-              child: typeWrite("> Corsi ", 24),
+              child: typeWrite("> Corsi offerti", 24),
             ),
           ),
           Flexible(

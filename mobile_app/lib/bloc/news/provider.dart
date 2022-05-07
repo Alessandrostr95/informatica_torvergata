@@ -10,7 +10,7 @@ class NewsApiClient {
   Future<List<News>> fetch() async {
     var resp = await http.get(Uri.parse(url));
     final _data = jsonDecode(utf8.decode(resp.bodyBytes));
-    await Future.delayed(const Duration(seconds: 3));
+    // await Future.delayed(const Duration(seconds: 3));
     final news = List<News>.generate(_data.length, (index) => News.fromJson(_data[index]));
     return news;
   }

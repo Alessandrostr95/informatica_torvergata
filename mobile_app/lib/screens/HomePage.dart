@@ -1,12 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:mobile_app/screens/ContactPage.dart';
+import 'package:mobile_app/screens/InfoPage.dart';
 
 import 'HomeTab.dart';
 import 'CalendarTab.dart';
 import 'TeacherTab.dart';
 import 'ClassTab.dart';
+import 'ExamTab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       CalendarTab(),
       ListTeacherTab(),
       ClassTab(),
-      Text("ciao"),
+      ExamsTab()
     ];
     super.initState();
   }
@@ -104,7 +109,49 @@ class _HomePageState extends State<HomePage> {
             bottomRight: Radius.circular(15),
           )),
 
-          child: null, // todo
+          child: ListView(
+            children: [
+              DrawerHeader(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [BoxShadow(offset: Offset(3, 3), blurRadius: 4)],
+                  ),
+                  child: Image.asset("assets/images/ppp.png"),
+                ) 
+              ),
+              const Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.white,
+              ),
+              
+              ListTile(
+                leading: const Icon(Icons.info_outline, color: Colors.white),
+                title: const Text('About', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                onTap: () => Navigator.pushNamed(context, InfoPage.PAGE_ROUTE),
+              ),
+
+              const Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.white,
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.contact_phone_outlined, color: Colors.white),
+                title: const Text('Contact', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                onTap: () => Navigator.pushNamed(context, ContactPage.PAGE_ROUTE),
+              ),
+
+              const Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.white,
+              ),
+            ],
+          )
         ),
       ),
     );

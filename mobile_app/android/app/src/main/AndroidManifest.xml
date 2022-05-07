@@ -27,8 +27,9 @@
         </intent>
     </queries>
 
+    <!-- android:label="mobile_app" -->
    <application
-        android:label="mobile_app"
+        android:label="Informatica Tor Vergata"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
