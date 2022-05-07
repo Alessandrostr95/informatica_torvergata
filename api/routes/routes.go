@@ -19,7 +19,7 @@ func RegisterRoutes(router *mux.Router) {
 		if _, err := os.Stat(path); err == nil {
 			http.ServeFile(w, r, path)
 		} else {
-			http.ServeFile(w, r, "static/images/404.jpg")
+			http.ServeFile(w, r, "static/images/404.png")
 		}
 		return
 	}).Methods("GET")

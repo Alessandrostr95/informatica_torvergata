@@ -15,12 +15,12 @@ func main() {
 	r := mux.NewRouter()
 	routes.RegisterRoutes(r)
 	http.Handle("/", r)
-	fmt.Println("Server is running on port 8080")
+	fmt.Println("Server is running on port 8087")
 
 	handler := cors.New(
 		cors.Options{
 			AllowedOrigins: []string{"*"},
 		},
 	).Handler(r)
-	log.Fatal(http.ListenAndServe(":8080", handler))
+	log.Fatal(http.ListenAndServe(":8087", handler))
 }
