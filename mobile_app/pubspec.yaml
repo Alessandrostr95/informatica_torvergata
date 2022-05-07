@@ -49,6 +49,8 @@ dependencies:
   circular_reveal_animation: ^2.0.0
   url_launcher: ^6.1.0
   data_table_2: ^2.2.1
+  auto_size_text: ^3.0.0
+  bordered_text: ^2.0.0
 
 dev_dependencies:
   flutter_test:

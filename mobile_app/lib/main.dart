@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/models/Info.dart';
+import 'package:mobile_app/screens/ClassPage.dart';
 
 import 'package:mobile_app/screens/HomePage.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,7 @@ class InformaticaTorVergataApp extends StatelessWidget {
       initialRoute: HomePage.PAGE_ROUTE,
       routes: <String, WidgetBuilder>{
         HomePage.PAGE_ROUTE: (context) => const HomePage(),
+        ClassPage.PAGE_ROUTE: (context) => const ClassPage(),
       },
     );
   }

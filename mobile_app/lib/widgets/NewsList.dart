@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/bloc/news/provider.dart';
 import 'package:mobile_app/bloc/news/bloc.dart';
 import 'package:mobile_app/bloc/news/model.dart';
+import 'package:mobile_app/utils/globals.dart';
 
 class NewsList extends StatefulWidget {
   const NewsList({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _NewsListState extends State<NewsList>
 
     return BlocProvider(
       create: (context) =>
-          NewsBloc(NewsApiClient(url: "http://192.168.1.15:8080/api/data/news"))
+          NewsBloc(NewsApiClient(url: "$BASE_URL/api/data/news"))
             ..add(LoadNewsEvent()),
       child: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {

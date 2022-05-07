@@ -5,6 +5,7 @@ import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 
 import 'package:mobile_app/bloc/calendar/bloc.dart';
 import 'package:mobile_app/bloc/calendar/provider.dart';
+import 'package:mobile_app/utils/globals.dart';
 
 class CalendarWidget extends StatefulWidget {
   const CalendarWidget({Key? key, required this.cdl, required this.years})
@@ -24,7 +25,7 @@ class _CalendarWidgetState extends State<CalendarWidget>
 
     final CalendarBloc _bloc = CalendarBloc(CalendarApiClient(
         url:
-            "http://192.168.1.15:8080/api/data/${widget.cdl.toLowerCase()}/21-22/calendar/2"))
+            "$BASE_URL/api/data/${widget.cdl.toLowerCase()}/21-22/calendar/2"))
       ..add(LoadCalendarEvent());
 
     return BlocProvider(

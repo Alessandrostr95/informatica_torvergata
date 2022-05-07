@@ -6,6 +6,7 @@ import 'package:line_icons/line_icons.dart';
 import 'HomeTab.dart';
 import 'CalendarTab.dart';
 import 'TeacherTab.dart';
+import 'ClassTab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       HomeTab(),
       CalendarTab(),
       ListTeacherTab(),
-      Text("ciao"),
+      ClassTab(),
       Text("ciao"),
     ];
     super.initState();

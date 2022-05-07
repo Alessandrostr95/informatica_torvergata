@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:mobile_app/bloc/teacher/bloc.dart';
 import 'package:mobile_app/bloc/teacher/provider.dart';
 import 'package:mobile_app/bloc/teacher/model.dart';
+import 'package:mobile_app/utils/globals.dart';
 
 class TeacherTable extends StatefulWidget {
   const TeacherTable({Key? key, required this.cdl}) : super(key: key);
@@ -24,7 +25,7 @@ class _TeacherTableState extends State<TeacherTable>
 
     final TeacherBloc _bloc = TeacherBloc(TeacherApiClient(
         url:
-            "http://192.168.1.15:8080/api/data/${widget.cdl.toLowerCase()}/21-22/teacher"))
+            "$BASE_URL/api/data/${widget.cdl.toLowerCase()}/21-22/teacher"))
       ..add(LoadTeacherEvent());
 
     return BlocProvider(
