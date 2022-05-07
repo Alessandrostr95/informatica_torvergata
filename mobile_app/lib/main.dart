@@ -32,6 +32,7 @@ class InformaticaTorVergataApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Informatica Tor Vergata',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
