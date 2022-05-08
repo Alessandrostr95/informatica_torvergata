@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:expandable/expandable.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class News extends Equatable {
   final String title;
@@ -101,15 +103,26 @@ class News extends Equatable {
           ),
           expanded: Padding(
             padding: const EdgeInsets.all(16),
-            child: Text(e.content),
+            // child: Text(e.content),
+            child: Html(
+              data: e.content,
+              onLinkTap: (url, _, __, ___) => launch(url != "" ? url! : "",
+                  forceWebView: false, forceSafariVC: false),
+            ),
           ),
           collapsed: Padding(
             padding: const EdgeInsets.all(16),
-            child: Text(
-              e.content,
-              softWrap: true,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            // child: Text(
+            //   e.content,
+            //   softWrap: true,
+            //   maxLines: 1,
+            //   overflow: TextOverflow.ellipsis,
+            // ),
+            child: Html(
+              data: e.content,
+              style: {
+                "*": Style(maxLines: 1, textOverflow: TextOverflow.ellipsis)
+              },
             ),
           ),
         ),
