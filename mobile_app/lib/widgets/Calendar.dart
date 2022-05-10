@@ -25,7 +25,7 @@ class _CalendarWidgetState extends State<CalendarWidget>
 
     final CalendarBloc _bloc = CalendarBloc(CalendarApiClient(
         url:
-            "$BASE_URL/api/data/${widget.cdl.toLowerCase()}/21-22/calendar/2"))
+            "$BASE_URL/api/data/${widget.cdl.toLowerCase()}/21-22/calendar/${SEMESTER.toString()}"))
       ..add(LoadCalendarEvent());
 
     return BlocProvider(
