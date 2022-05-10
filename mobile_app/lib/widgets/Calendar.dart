@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/shims/dart_ui_real.dart';
 import 'package:time_planner/time_planner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:circular_reveal_animation/circular_reveal_animation.dart';
@@ -44,36 +46,39 @@ class _CalendarWidgetState extends State<CalendarWidget>
             //   child: Text(widget.cdl + ":" + state.calendar.data.toString()),
             // );
             return DefaultTabController(
-                length: widget.years,
-                child: Scaffold(
-                  appBar: AppBar(
-                    // title: Text("Orari ${widget.cdl}"),
-                    automaticallyImplyLeading: false,
-                    flexibleSpace: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TabBar(
-                            tabs: List.generate(widget.years,
-                                    (index) => Tab(text: "${index + 1}° anno"))
-                                .toList())
-                      ],
-                    ),
+              length: widget.years,
+              child: Scaffold(
+                appBar: AppBar(
+                  // title: Text("Orari ${widget.cdl}"),
+                  automaticallyImplyLeading: false,
+                  flexibleSpace: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TabBar(
+                        tabs: List.generate(
+                          widget.years,
+                          (index) => Tab(text: "${index + 1}° anno"),
+                        ).toList(),
+                      )
+                    ],
                   ),
-                  body: TabBarView(
-                      children: List.generate(widget.years, (index) {
-                    final data = state.calendar.data;
-                    final nthYearCalendar = data
-                        .where((element) => element["coures_year"] == index + 1)
-                        .toList();
-                    final tasks = nthYearCalendar
-                        .map((element) => _toTask(element))
-                        .toList();
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: _getTimePlanner(tasks),
-                    );
-                  }).toList()),
-                ));
+                ),
+                body: TabBarView(
+                    children: List.generate(widget.years, (index) {
+                  final data = state.calendar.data;
+                  final nthYearCalendar = data
+                      .where((element) => element["coures_year"] == index + 1)
+                      .toList();
+                  final tasks = nthYearCalendar
+                      .map((element) => _toTask(element))
+                      .toList();
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: _getTimePlanner(tasks),
+                  );
+                }).toList()),
+              ),
+            );
           } else if (state is CalendarErrorState) {
             return Center(
               child: Column(
@@ -87,9 +92,10 @@ class _CalendarWidgetState extends State<CalendarWidget>
                     ),
                   ),
                   IconButton(
-                      onPressed: () => BlocProvider.of<CalendarBloc>(context)
-                          .add(LoadCalendarEvent()),
-                      icon: const Icon(Icons.refresh, color: Colors.green)),
+                    onPressed: () => BlocProvider.of<CalendarBloc>(context)
+                        .add(LoadCalendarEvent()),
+                    icon: const Icon(Icons.refresh, color: Colors.green),
+                  ),
                 ],
               ),
             );
@@ -128,7 +134,10 @@ class _CalendarWidgetState extends State<CalendarWidget>
       ],
       tasks: tasks,
       style: TimePlannerStyle(
-          dividerColor: Colors.green[800], showScrollBar: true),
+        dividerColor: Colors.green[800],
+        showScrollBar: true,
+        cellWidth: 130,
+      ),
     );
   }
 
@@ -151,46 +160,66 @@ class _CalendarWidgetState extends State<CalendarWidget>
       color: Colors.green[800],
       child: Padding(
         padding: const EdgeInsets.all(8),
-        child: Text(
+        // child: Text(
+        //   item["name"],
+        //   style: const TextStyle(
+        //     color: Colors.white,
+        //     fontWeight: FontWeight.bold,
+        //     fontSize: 10,
+        //   ),
+        //   softWrap: true,
+        //   textAlign: TextAlign.center,
+        // ),
+        child: AutoSizeText(
           item["name"],
+          wrapWords: false,
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 10,
           ),
-          softWrap: true,
           textAlign: TextAlign.center,
         ),
       ),
       onTap: () => showGeneralDialog(
-          context: context,
-          barrierDismissible: true,
-          barrierLabel: "label",
-          pageBuilder: (context, anim1, anim2) {
-            return AlertDialog(
-                title: Text(item["name"]),
-                content: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  height: MediaQuery.of(context).size.height * 0.45,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text('\u2022 Codice: ${item["code"]}'),
-                      Text('\u2022 Inizio lezione: ${item["start_time"]}'),
-                      Text('\u2022 Fine lezione: ${item["end_time"]}'),
-                      Text('\u2022 Aula: ${item["room"]}'),
-                      Text('\u2022 Edificio: ${item["building"]}'),
-                    ],
-                  ),
-                ));
-          },
-          transitionBuilder: (context, anim1, anim2, child) {
-            return CircularRevealAnimation(
-                child: child,
-                animation: anim1,
-                centerAlignment: Alignment.center);
-          }),
+        context: context,
+        barrierDismissible: true,
+        barrierLabel: "label",
+        pageBuilder: (context, anim1, anim2) {
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: AlertDialog(
+              title: Text(
+                item["name"],
+                style: const TextStyle(
+                  fontFamily: 'monospace',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              content: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.height * 0.45,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text('\u2022 Codice: ${item["code"]}'),
+                    Text('\u2022 Inizio lezione: ${item["start_time"]}'),
+                    Text('\u2022 Fine lezione: ${item["end_time"]}'),
+                    Text('\u2022 Aula: ${item["room"]}'),
+                    Text('\u2022 Edificio: ${item["building"]}'),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+        transitionBuilder: (context, anim1, anim2, child) {
+          return CircularRevealAnimation(
+              child: child,
+              animation: anim1,
+              centerAlignment: Alignment.center);
+        },
+      ),
     );
   }
 }
