@@ -88,11 +88,11 @@ create table exam (
     `session` varchar(255) NOT NULL DEFAULT "estiva",
     `call` tinyint(3) unsigned DEFAULT 1,
     `type` varchar(255) NOT NULL DEFAULT "scritto",
-    `date` date NOT NULL,
-    `hour` time NOT NULL,
+    `date` date,
+    `hour` time,
     room varchar(255),
     building varchar(255),
     duration integer unsigned,
-    FOREIGN KEY (`year`) REFERENCES class_offered(`year`),
-    FOREIGN KEY (class) REFERENCES class_offered(class),
-    PRIMARY KEY (class, `year`, `session`, `call`, `type`));
+    -- FOREIGN KEY (`year`) REFERENCES class_offered(`year`),
+    -- FOREIGN KEY (class) REFERENCES class_offered(class),
+    PRIMARY KEY (class, `year`, `session`, `call`, `type`));    
