@@ -1,25 +1,30 @@
-GET http://localhost:8080/api/data/triennale/21-22/teacher 
+GET http://localhost:8087/api/data/triennale/21-22/teacher 
 
 ###
-GET http://localhost:8080/api/data/triennale/21-22/class
+GET http://localhost:8087/api/data/triennale/21-22/class
 
 ###
-GET http://localhost:8080/api/data/triennale/21-22/calendar/2
+GET http://localhost:8087/api/data/triennale/21-22/calendar/2
 
+###
+GET http://localhost:8087/api/data/triennale/21-22/exam/estiva
 
 ###
 # MAGISTRALE
-GET http://localhost:8080/api/data/magistrale/21-22/teacher
+GET http://localhost:8087/api/data/magistrale/21-22/teacher
 
 ###
-GET http://localhost:8080/api/data/magistrale/21-22/class
+GET http://localhost:8087/api/data/magistrale/21-22/class
 
 ###
-GET http://localhost:8080/api/data/magistrale/21-22/calendar/2
+GET http://localhost:8087/api/data/magistrale/21-22/calendar/2
 
 ###
-GET http://localhost:8080/api/data/news
+GET http://localhost:8087/api/data/news
 
 
 ###
-GET http://localhost:8080/api/data/images/AE.png
+GET http://localhost:8087/api/data/images/AE.png
+
+###
+GET http://localhost:8087/api/data/magistrale/21-22/exam/estiva%20anticipata

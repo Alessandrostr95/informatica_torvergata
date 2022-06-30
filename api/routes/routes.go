@@ -23,4 +23,5 @@ func RegisterRoutes(router *mux.Router) {
 		}
 		return
 	}).Methods("GET")
+	router.HandleFunc("/api/data/{cdl}/{year}/exam/{session}", controllers.GetExamsBySession).Methods("GET")
 }
