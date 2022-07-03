@@ -7,3 +7,5 @@ library globals;
 const String BASE_URL = "http://160.80.216.209:8087";
 
 const int SEMESTER = 2;
+const String TRIENNALE = "triennale";
+const String MAGISTRALE = "magistrale";

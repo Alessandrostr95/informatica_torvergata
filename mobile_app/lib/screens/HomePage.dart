@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       CalendarTab(),
       ListTeacherTab(),
       ClassTab(),
-      ExamsTab()
+      ExamTab()
     ];
     super.initState();
   }
